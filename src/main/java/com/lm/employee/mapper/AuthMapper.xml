@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lm.employee.mapper.AuthMapper">
+
+	<!--查询用户权限-->
+	<select id="selectAuth"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Auth">
+		select  distinct a.auth_id,a.auth_name,a.p_id,a.path
+        from auth a ,employee e, role_empl re, role_auth ra
+        where a.auth_id = ra.auth_id and re.role_id = ra.role_id and re.empl_id = e.empl_id and e.empl_id = #{emplId}
+	</select>
+
+</mapper>

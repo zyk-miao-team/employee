@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lm.employee.mapper.EmployeeMapper">
+
+	<!--查询用户登录密码-->
+	<select id="selectPassword"  parameterType="java.lang.String" resultType="java.lang.String">
+		select password from employee  where empl_id=#{emplId}
+	</select>
+
+	<!--查询用户权限-->
+	<select id="selectAuth"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Auth">
+		select  distinct a.auth_id,a.auth_name
+        from auth a ,employee e, role_empl re, role_auth ra
+        where a.auth_id = ra.auth_id and re.role_id = ra.role_id and re.empl_id = e.empl_id and e.empl_id = #{emplId}
+	</select>
+
+	<!--查询员工本人基本信息-->
+	<select id="selectOneEmloyee"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Employee">
+        select * from employee  where empl_id=#{emplId}
+    </select>
+
+	<!--查询所有员工基本信息-->
+	<select id="selectAllEmloyee" parameterType="com.lm.employee.entity.ReqEmployeeVo" resultType="com.lm.employee.entity.Employee">
+		select * from employee
+		where 1=1
+		<if test="reqEmployeeVo.emplId != null and reqEmployeeVo.emplId != ''">
+			and empl_id=#{reqEmployeeVo.emplId}
+		</if>
+		<if test="reqEmployeeVo.emplName != null and reqEmployeeVo.emplName != ''">
+			and empl_name=#{reqEmployeeVo.emplName}
+		</if>
+		<if test="reqEmployeeVo.deptNo != null and reqEmployeeVo.deptNo != ''">
+			and dept_no=#{reqEmployeeVo.deptNo}
+		</if>
+	</select>
+
+	<select id="selectRole"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Employee">
+		select a.*,c.* from employee  a
+		left join role_empl b on a.empl_id=b.empl_id
+		left join role c on b.role_id=c.role_id
+		where  a.empl_id=#{emplId}
+	</select>
+
+
+	<select id="selectAu"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Test">
+		select distinct a.* from auth a
+			INNER JOIN role_auth b on a.auth_id=b.auth_id
+			INNER JOIN role c on b.role_id=c.role_id
+			INNER JOIN role_empl d on c.role_id=d.role_id
+			INNER JOIN employee e on d.empl_id=e.empl_id
+			where e.empl_id=#{emplId}
+	</select>
+
+
+</mapper>
