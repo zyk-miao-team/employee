@@ -7,6 +7,11 @@
 		select password from employee  where empl_id=#{emplId}
 	</select>
 
+	<!--查询用户姓名-->
+	<select id="selectName"  parameterType="java.lang.String" resultType="java.lang.String">
+		select empl_name from employee  where empl_id=#{emplId}
+	</select>
+
 	<!--查询用户权限-->
 	<select id="selectAuth"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Auth">
 		select  distinct a.auth_id,a.auth_name
@@ -14,7 +19,7 @@
         where a.auth_id = ra.auth_id and re.role_id = ra.role_id and re.empl_id = e.empl_id and e.empl_id = #{emplId}
 	</select>
 
-	<!--查询员工本人基本信息-->
+	<!--查询员工个人基本信息-->
 	<select id="selectOneEmloyee"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Employee">
         select * from employee  where empl_id=#{emplId}
     </select>
@@ -34,14 +39,12 @@
 		</if>
 	</select>
 
-	<select id="selectRole"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Employee">
-		select a.*,c.* from employee  a
-		left join role_empl b on a.empl_id=b.empl_id
-		left join role c on b.role_id=c.role_id
-		where  a.empl_id=#{emplId}
-	</select>
+	<!--修改密码-->
+	<update id="updatePassword"  parameterType="java.lang.String">
+        update employee set password=#{newPwd}  where empl_id=#{emplId} and password=#{oldPwd}
+    </update>
 
-
+	<!--查询权限-->
 	<select id="selectAu"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Test">
 		select distinct a.* from auth a
 			INNER JOIN role_auth b on a.auth_id=b.auth_id

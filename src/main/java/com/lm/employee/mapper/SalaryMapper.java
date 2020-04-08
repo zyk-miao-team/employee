@@ -1,17 +1,16 @@
 package com.lm.employee.mapper;
 
-import com.lm.employee.entity.Auth;
+import com.lm.employee.entity.Salary;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
 @Repository
-public interface AuthMapper {
+public interface SalaryMapper {
     /**
-     * 查询权限
+     * 查询个人薪资信息
      */
-    List<Auth> selectAuth(String emplId);
+    List<Salary> selectOneSalary(String emplId);
 }

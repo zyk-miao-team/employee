@@ -35,9 +35,10 @@ public class LoginController {
         String emplId = request.getParameter("username");
         String password = request.getParameter("password");
         String result = loginService.login(emplId, password);
-        if (result.equals("success")) {
-//            HttpSession session = request.getSession();   //获取session并将emplId存入session对象
-//            session.setAttribute("emplid", emplId);
+        if (!result.equals("failed")) {
+            HttpSession session = request.getSession();   //获取session并将emplId存入session对象
+            session.setAttribute("emplid", emplId);
+            session.setAttribute("name",result);
             return true;
         }
         return false;

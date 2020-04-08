@@ -20,12 +20,16 @@ public interface EmployeeMapper {
     String selectPassword(@Param("emplId") String emplId);
 
     /**
+     * 查询用户姓名
+     */
+    String selectName(String emplId);
+    /**
      *查询用户权限
      */
     Auth selectAuth(String emplId);
 
     /**
-     * 查询员工本人基本信息
+     * 查询员工个人基本信息
      */
     Employee selectOneEmloyee(String emplId);
 
@@ -36,10 +40,13 @@ public interface EmployeeMapper {
     List<Employee> selectAllEmloyee(ReqEmployeeVo reqEmployeeVo);
 
     /**
-     * 修改员工基本信息
+     * 修改密码
      */
-    Employee selectRole(String emplId);
+    void updatePassword(String emplId,String oldPwd,String newPwd);
 
+    /**
+     *查询权限
+     */
     List<Test> selectAu(String emplId);
 
 }

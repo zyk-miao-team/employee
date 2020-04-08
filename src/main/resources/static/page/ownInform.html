@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="/css/index.css" media="all"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<!--<div class="layui-tab-content layui-tab layui-tab-card" lay-filter="demo"-->
+<!--     style="margin: 0;padding-top: 0px;padding-left: 0px;">-->
+<!--    &lt;!&ndash;                    &ndash;&gt;-->
+<!--    <style>-->
+<!--        .layui-tab-title li a {-->
+<!--            color: #494b4d;-->
+<!--        }-->
+
+<!--        .layui-tab-title li.layui-this a {-->
+<!--            color: #4882ff;-->
+<!--        }-->
+<!--    </style>-->
+<!--    <ul class="layui-tab-title" style="">-->
+<!--        <li class="layui-this">-->
+<!--            <a href="/school/studentController/info?type=info_personal&amp;student_id=95" replace="true">个人信息</a>-->
+<!--        </li>-->
+<!--        <li class="">-->
+<!--            <a href="/school/studentController/info?type=info_education&amp;student_id=95" replace="true">学籍信息</a>-->
+<!--        </li>-->
+<!--        <li class="">-->
+<!--            <a href="/school/studentController/info?type=info_family&amp;student_id=95" replace="true">家庭信息</a>-->
+<!--        </li>-->
+<!--        <li class="">-->
+<!--            <a href="/school/studentController/info?type=info_work&amp;student_id=95" replace="true">学历/工作简历</a>-->
+<!--        </li>-->
+<!--        <li class="">-->
+<!--            <a href="/school/studentController/info?type=info_other&amp;student_id=95" replace="true">其他添加信息</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+
+<!--    &lt;!&ndash;                    &ndash;&gt;-->
+<!--    <div id="tab-content" class="layui-form fixed-width" style="padding: 15px 40px;">-->
+<!--        <form action="/school/studentController/save" method="post"><input type="hidden" name="student_id" value="95">-->
+<!--            <input type="hidden" name="page_type" value="info_personal">-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12 box">-->
+<!--                    <div class="layui-form-item"><label class="layui-form-label"><h1><b-->
+<!--                            style="font-size: 14px; color: rgb(73, 75, 77);">个人信息</b></h1></label> <label for=""-->
+<!--                                                                                                          class="layui-form-label"-->
+<!--                                                                                                          style="width: 200px; text-align: left; cursor: pointer; padding-top: 6px; padding-left: 20px;"><a-->
+<!--                            class="link">修改资料-->
+<!--                        <i class="fa fa-edit"></i></a></label></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="layui-form-item"><label class="layui-form-label" style="margin-top: 40px;">头像</label>-->
+<!--                        <div class="layui-input-block"><img-->
+<!--                                src="http://file.17lunwen.com/files/2178/student/20200229/c6d20f4b1592aa005efb4b82daef3cc3.jpg"-->
+<!--                                width="100" height="100" id="avatar_img" alt="头像" style="border-radius: 100%;"> <input-->
+<!--                                type="hidden" id="avatar" name="student[avatar]"-->
+<!--                                value="http://file.17lunwen.com/files/2178/student/20200229/c6d20f4b1592aa005efb4b82daef3cc3.jpg">-->
+<!--                            &lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12 box">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;姓名</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label">刘敏</label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;性别</label>-->
+<!--                            <div class="layui-input-block sex-box"><label class="static-label">女</label>-->
+<!--                                <div style="display: none;"><input type="radio" name="student[sex]" value="man"-->
+<!--                                                                   title="男">-->
+<!--                                    <div class="layui-unselect layui-form-radio"><i-->
+<!--                                            class="layui-anim layui-icon"></i><span>男</span></div>-->
+<!--                                    <input type="radio" name="student[sex]" value="woman" checked="checked" title="女">-->
+<!--                                    <div class="layui-unselect layui-form-radio layui-form-radioed"><i-->
+<!--                                            class="layui-anim layui-icon"></i><span>女</span></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;出生日期</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label" style="padding-top: 7px;">1998-01-24</label>-->
+<!--                                &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row box">-->
+<!--                    <div class="col-md-12 box">-->
+<!--                        <div class="col-md-4">-->
+<!--                            <div class="layui-form-item"><label class="layui-form-label">免冠照片</label>-->
+<!--                                <div class="layui-input-block"><img id="photo_path_img" width="80" height="80"-->
+<!--                                                                    src="/resources/img/default-avatar.png" alt="免冠照片">-->
+<!--                                    <i id="photo-enlarge-btn" class="system-icon enlarge-icon"-->
+<!--                                       style="display: inline-block; float: none; cursor: pointer;"></i> <input-->
+<!--                                            type="hidden" id="photo_path" name="student[photo_path]"-->
+<!--                                            value="/resources/img/default-avatar.png"> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-4">-->
+<!--                            <div class="layui-form-item"><label class="layui-form-label">学生证</label>-->
+<!--                                <div class="layui-input-block"><img id="student_photo_img" width="80" height="80"-->
+<!--                                                                    src="/resources/img/default-avatar.png" alt="学生证照片">-->
+<!--                                    <i id="student-photo-btn" class="system-icon enlarge-icon"-->
+<!--                                       style="display: inline-block; float: none; cursor: pointer;"></i> <input-->
+<!--                                            type="hidden" id="student_photo_path" name="student[student_photo_path]"-->
+<!--                                            value="/resources/img/default-avatar.png"> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-4">-->
+<!--                            <div class="layui-form-item"><label class="layui-form-label">身份证</label>-->
+<!--                                <div class="layui-input-block"><img id="id_card_photo_path_img" width="80" height="80"-->
+<!--                                                                    src="/resources/img/default-avatar.png" alt="身份证照片">-->
+<!--                                    <i id="id-card-btn" class="system-icon enlarge-icon"-->
+<!--                                       style="display: inline-block; float: none; cursor: pointer;"></i> <input-->
+<!--                                            type="hidden" id="id_card_photo_path" name="student[id_card_photo_path]"-->
+<!--                                            value="/resources/img/default-avatar.png"> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12 box">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;学生类型</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label"><b class="red"-->
+<!--                                                                                        style="display: none;">*</b>学号</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label" style="padding-top: 7px;">201620107103</label>-->
+<!--                                &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;外语语种</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12 box">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;国籍</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label">中国</label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">民族</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;政治面貌</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12 box"></div>-->
+<!--            </div>-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12 box">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;证件类型</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label">身份证</label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;证件号码</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"-->
+<!--                                                                  style="padding-top: 7px;"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;婚姻状况</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12 box">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;QQ号码</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"-->
+<!--                                                                  style="padding-top: 7px;"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;邮箱</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"-->
+<!--                                                                  style="padding-top: 7px;"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;移动电话</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label" style="padding-top: 7px;">15881652473 </label>-->
+<!--                                &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">&lt;!&ndash;&ndash;&gt;培养方式</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div> &lt;!&ndash;&ndash;&gt;-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">家庭经济状况</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">低保家庭类别</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">入党团时间</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">党员关系属地</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">在校职位</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="layui-form-item"><label class="layui-form-label">第一次奖学金获得情况</label>-->
+<!--                            <div class="layui-input-block"><label class="static-label"></label> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row box">-->
+<!--                <div class="col-md-12 box">&lt;!&ndash;&ndash;&gt;</div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+
+
+<!--<div class="=col-md-4">-->
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">员工号</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+
+<!--            <input type="text" readonly="readonly" name="student[name]" layui-verify="required|filter" value="刘敏" autocomplete="off" placeholder="请输入姓名" maxlength="20" class="layui-input">-->
+
+<!--        </div>-->
+<!--        <label class="layui-form-label">姓名</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="刘敏" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">性别</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label"><b class="red">*</b>手机号</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">邮箱</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">身份证号</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">出生年月日</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">籍贯</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">民族</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">住址</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">学历</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">毕业院校</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">专业</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">政治面貌</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">部门号</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">岗位</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--        <label class="layui-form-label">备注</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" readonly="readonly" name="" value="" autocomplete="off"  maxlength="10" class="layui-input">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+</body>
+</html>
