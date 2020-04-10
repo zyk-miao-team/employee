@@ -37,7 +37,7 @@ public interface EmployeeMapper {
      * 查询所有员工基本信息（管理员权限）
      * @return
      */
-    List<Employee> selectAllEmloyee(ReqEmployeeVo reqEmployeeVo);
+    List<Employee> selectAllEmloyee();
 
     /**
      * 修改密码
@@ -48,5 +48,15 @@ public interface EmployeeMapper {
      *查询权限
      */
     List<Test> selectAu(String emplId);
+
+    /**
+     * 管理员删除某个员工
+     */
+    void deletEmployee(String emplId);
+
+    /**
+     * 管理员修改某个员工的资料
+     */
+    void updateEmployee(Employee employee);
 
 }

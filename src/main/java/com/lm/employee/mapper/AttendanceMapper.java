@@ -1,6 +1,6 @@
 package com.lm.employee.mapper;
 
-import com.lm.employee.entity.Auth;
+import com.lm.employee.entity.Attendance;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -8,9 +8,9 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface AuthMapper {
+public interface AttendanceMapper {
     /**
-     * 查询权限
+     * 查询个人考勤
      */
-    List<Auth> selectAuth(String emplId);
+    List<Attendance> selectOneAttendance(String emplId);
 }

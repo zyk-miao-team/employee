@@ -25,18 +25,18 @@
     </select>
 
 	<!--查询所有员工基本信息-->
-	<select id="selectAllEmloyee" parameterType="com.lm.employee.entity.ReqEmployeeVo" resultType="com.lm.employee.entity.Employee">
+	<select id="selectAllEmloyee" resultType="com.lm.employee.entity.Employee">
 		select * from employee
-		where 1=1
-		<if test="reqEmployeeVo.emplId != null and reqEmployeeVo.emplId != ''">
-			and empl_id=#{reqEmployeeVo.emplId}
-		</if>
-		<if test="reqEmployeeVo.emplName != null and reqEmployeeVo.emplName != ''">
-			and empl_name=#{reqEmployeeVo.emplName}
-		</if>
-		<if test="reqEmployeeVo.deptNo != null and reqEmployeeVo.deptNo != ''">
-			and dept_no=#{reqEmployeeVo.deptNo}
-		</if>
+<!--		where 1=1-->
+<!--		<if test="reqEmployeeVo.emplId != null and reqEmployeeVo.emplId != ''">-->
+<!--			and empl_id=#{reqEmployeeVo.emplId}-->
+<!--		</if>-->
+<!--		<if test="reqEmployeeVo.emplName != null and reqEmployeeVo.emplName != ''">-->
+<!--			and empl_name=#{reqEmployeeVo.emplName}-->
+<!--		</if>-->
+<!--		<if test="reqEmployeeVo.deptNo != null and reqEmployeeVo.deptNo != ''">-->
+<!--			and dept_no=#{reqEmployeeVo.deptNo}-->
+<!--		</if>-->
 	</select>
 
 	<!--修改密码-->
@@ -54,5 +54,63 @@
 			where e.empl_id=#{emplId}
 	</select>
 
+	<!--管理员删除某个员工-->
+	<delete id="deletEmployee"  parameterType="java.lang.String">
+          delete from employee where empl_id=#{emplId}
+    </delete>
+
+	<!--管理员修改某个员工的资料-->
+	<update id="updateEmployee"  parameterType="com.lm.employee.entity.Employee">
+        update employee set empl_id=#{emplId}
+		<if test="emplName != null and emplName != ''">
+		,empl_name=#{emplName}
+		</if>
+		<if test="sex != null and sex != ''">
+			,sex=#{sex}
+		</if>
+		<if test="mobile != null and mobile != ''">
+			,mobile=#{mobile}
+		</if>
+		<if test="email != null and email != ''">
+			,email=#{email}
+		</if>
+		<if test="idCard != null and idCard != ''">
+			,id_card=#{idCard}
+		</if>
+		<if test="birthday != null and birthday != ''">
+			,birthday=#{birthday}
+		</if>
+		<if test="nativePlace != null and nativePlace != ''">
+			,native_place=#{nativePlace}
+		</if>
+		<if test="nation != null and nation != ''">
+			,nation=#{nation}
+		</if>
+		<if test="address != null and address != ''">
+		,address=#{address}
+    	</if>
+		<if test="education != null and education != ''">
+			,education=#{education}
+		</if>
+		<if test="school != null and school != ''">
+			,school=#{school}
+		</if>
+		<if test="major != null and major != ''">
+			,major=#{major}
+		</if>
+		<if test="ploityface != null and ploityface != ''">
+			,ploityface=#{ploityface}
+		</if>
+		<if test="deptNo != null and deptNo != ''">
+			,dept_no=#{deptNo}
+		</if>
+		<if test="stationName != null and stationName != ''">
+			,station_name=#{stationName}
+		</if>
+		<if test="remarks != null and remarks != ''">
+			,remarks=#{remarks}
+		</if>
+         where empl_id=#{emplId}
+    </update>
 
 </mapper>

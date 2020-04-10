@@ -9,9 +9,9 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
     //添加验证规则
     form.verify({
         oldPwd : function(value, item){
-            if(value != "123456"){
-                return "密码错误，请重新输入！";
-            }
+            // if(value != "123456"){
+            //     return "密码错误，请重新输入！";
+            // }
         },
         newPwd : function(value, item){
             if(value.length < 6){

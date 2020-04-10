@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lm.employee.mapper.AttendanceMapper">
+
+	<!--查询个人考勤-->
+	<select id="selectOneAttendance"  parameterType="java.lang.String" resultType="com.lm.employee.entity.Attendance">
+		select * from attendance  where empl_id=#{emplId}
+	</select>
+
+</mapper>
