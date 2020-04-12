@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lm.employee.mapper.ImageMapper">
+
+	<!--查询个人薪资信息-->
+	<select id="selectImage"  parameterType="java.lang.String" resultType="java.lang.String">
+		select image_url from image  where empl_id=#{emplId}
+	</select>
+
+	<!--添加个人头像-->
+	<insert id="addImage" parameterType="java.lang.String">
+		insert into image value (#{emplId},#{imageUrl})
+	</insert>
+
+	<!--更改个人头像-->
+	<update id="updateImage" parameterType="java.lang.String">
+		update image set image_url=#{imageUrl} where empl_id=#{emplId}
+	</update>
+
+</mapper>

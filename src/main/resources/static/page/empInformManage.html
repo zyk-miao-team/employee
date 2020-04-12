@@ -229,7 +229,7 @@
                         '        <div class="layui-form-item">\n' +
                         '            <label class="layui-form-label">员工号</label>\n' +
                         '            <div class="layui-input-inline">\n' +
-                        '                <input type="text" id="emplId" class="layui-input" value=' + data.emplId + '>\n' +
+                        '                <input type="text" id="emplId" readonly="readonly" class="layui-input" value=' + data.emplId + '>\n' +
                         '            </div>\n' +
                         '        </div>\n' +
                         '        <div class="layui-form-item">\n' +
@@ -354,6 +354,7 @@
                             success: function (d) {
                                 layer.close(index);
                                 layer.msg("修改成功");
+                                window.location.reload();
                             },
                             error:function (d) {
                                 layer.msg("请求发生错误");

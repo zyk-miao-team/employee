@@ -15,9 +15,31 @@
     <link rel="stylesheet" href="/css/index.css" media="all"/>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
-        // $(function () {
-        //
-        // });
+        $(function () {
+
+            $.ajax({
+                url: "/selectImage",
+                method: "post",
+                data: {
+                    emplId: getUsername()
+                },
+                success:function (d) {
+                    // alert(d);
+                    if (d.trim()!=""){
+                        $("#image_head").attr('src',"http://103.40.20.150/emyimg/"+getUsername()+".png");
+                        $("#image_head_left").attr('src',"http://103.40.20.150/emyimg/"+getUsername()+".png");
+                    }
+                }
+            })
+               // $.ajax({
+               //     url:"http://103.40.20.150/emyimg/"+getUsername()+".png",
+               //     complete:function (r) {
+               //             alert(r.status);
+
+               //
+               //     }
+               // })
+        });
         function getUsername() {
             var cookies = document.cookie.split(";");
             for (var i = 0, l = cookies.length; i < l; i++) {
@@ -27,6 +49,9 @@
             }
             return null;
         }
+
+
+
     </script>
 </head>
 <body class="main_body">
@@ -43,7 +68,7 @@
                     <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
                 </li>
                 <li class="layui-nav-item" id="userInfo">
-                    <a href="javascript:;"><img src="images/userface4.jpg" class="layui-nav-img userAvatar" width="35"
+                    <a href="javascript:;"><img id="image_head" src="images/userface4.jpg" class="layui-nav-img userAvatar" width="35"
                                                 height="35"><cite class="adminName">虫虫</cite></a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-url="/page/user/userInfo.html"><i class="seraph icon-ziliao"
@@ -62,7 +87,7 @@
     <!-- 左侧导航 -->
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
-            <a class="img" title="我的头像"><img src="images/userface4.jpg" class="userAvatar"></a>
+            <a class="img" title="我的头像"><img  id="image_head_left" src="images/userface4.jpg" class="userAvatar"></a>
             <p>你好！欢迎登录</p>
         </div>
         <div class="navBar layui-side-scroll" id="navBar">

@@ -12,9 +12,25 @@
     <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="../../css/public.css" media="all"/>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
     <script>
+        window.onload = function () {
+            $.ajax({
+                url: "/selectImage",
+                method: "post",
+                data: {
+                    emplId: getUsername()
+                },
+            success:function (d) {
+                    // alert(d);
+                    if (d.trim()!=""){
+                        $('#userFace').attr('src', "http://103.40.20.150/emyimg/" + getUsername() + ".png");
+                    }
+            }
+            })
+        }
         $(function () {
+
             $.ajax({
                 url: "/selectOneEmployee",
                 method: "post",
@@ -24,25 +40,25 @@
                 success: function (d) {
                     console.log(d);
 
-                    t= $(".layui-input.layui-disabled");
+                    t = $(".layui-input.layui-disabled");
                     // t=document.getElementsByClassName("layui-input layui-disabled")
-                    t[0].value=d.emplId;
-                    t[1].value=d.emplName;
-                    t[2].value=d.sex;
-					t[3].value=d.mobile;
-					t[4].value=d.email;
-					t[5].value=d.idCard;
-					t[6].value=d.birthday;
-					t[7].value=d.nativePlace;
-					t[8].value=d.nation;
-					t[9].value=d.address;
-					t[10].value=d.education;
-					t[11].value=d.school;
-					t[12].value=d.major;
-					t[13].value=d.ploityface;
-					t[14].value=d.deptNo;
-					t[15].value=d.stationName;
-					t[16].value=d.remarks;
+                    t[0].value = d.emplId;
+                    t[1].value = d.emplName;
+                    t[2].value = d.sex;
+                    t[3].value = d.mobile;
+                    t[4].value = d.email;
+                    t[5].value = d.idCard;
+                    t[6].value = d.birthday;
+                    t[7].value = d.nativePlace;
+                    t[8].value = d.nation;
+                    t[9].value = d.address;
+                    t[10].value = d.education;
+                    t[11].value = d.school;
+                    t[12].value = d.major;
+                    t[13].value = d.ploityface;
+                    t[14].value = d.deptNo;
+                    t[15].value = d.stationName;
+                    t[16].value = d.remarks;
                 }
             })
         });
@@ -56,10 +72,27 @@
             }
             return null;
         }
+
+        function sub_mit() {
+            alert("aa");
+            var fm = new FormData();
+            fm.append("emy_id", getUsername());
+            fm.append("img", $("#img_face")[0].files[0]);
+            $.ajax(
+                {
+                    url: "http://103.40.20.150/saveimg.php",
+                    method: "post",
+                    data: fm,
+                    success: function (d) {
+                        alert("b")
+                    },
+                }
+            );
+        }
     </script>
 </head>
 <body class="childrenBody">
-<form class="layui-form layui-row">
+<form class="layui-form layui-row" enctype="multipart/form-data">
     <div class="layui-col-md3 layui-col-xs12 user_right">
         <div class="layui-upload-list">
             <img class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace">

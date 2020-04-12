@@ -1,4 +1,5 @@
 var form, $,areaData;
+
 layui.config({
     base : "../../js/"
 }).extend({
@@ -12,16 +13,39 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
         laydate = layui.laydate,
         address = layui.address;
 
-    //上传头像
     upload.render({
         elem: '.userFaceBtn',
-        url: '../../json/userface.json',
-        method : "get",  //此处是为了演示之用，实际使用中请将此删除，默认用post方式提交
+        url: "http://103.40.20.150/saveimg.php",
+        method : "post",  //此处是为了演示之用，实际使用中请将此删除，默认用post方式提交,
+        size:50,
+        data:{
+          emy_id:getUsername()
+        },
         done: function(res, index, upload){
-            var num = parseInt(4*Math.random());  //生成0-4的随机数，随机显示一个头像信息
-            $('#userFace').attr('src',res.data[num].src);
-            window.sessionStorage.setItem('userFace',res.data[num].src);
+            // sub_mit();
+            // var num = parseInt(4*Math.random());  //生成0-4的随机数，随机显示一个头像信息
+            $('#userFace').attr('src',"http://103.40.20.150/emyimg/"+getUsername()+".png");
+            // window.sessionStorage.setItem('userFace',"http://103.40.20.150/emyimg/"+getUsername()+".png");
+            $.ajax(
+                {
+                    url: "/addImage",
+                    method: "post",
+                    async: false,
+                    data: {
+                        emplId:getUsername(),
+                        imageUrl:"http://103.40.20.150/emyimg/"+getUsername()+".png"
+                    },
+                    success: function () {
+
+                    },
+                }
+            );
+            window.parent.location.reload();
+
+
         }
+
+
     });
 
     //添加验证规则
