@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lm.employee.mapper.ApplicationMapper">
+
+	<!--查询所有应聘信息-->
+	<select id="selectApplication" resultType="com.lm.employee.entity.Application">
+		select * from application
+	</select>
+
+	<!--管理员删除某个应聘信息-->
+	<delete id="deletApplication"  parameterType="java.lang.String">
+          delete from application where id=#{id}
+    </delete>
+
+	<!--管理员修改某个应聘信息-->
+	<update id="updateApplication"  parameterType="com.lm.employee.entity.Application">
+		update application set id=#{id}
+		<if test="name != null and name != ''">
+			,name=#{name}
+		</if>
+		<if test="sex != null and sex != ''">
+			,sex=#{sex}
+		</if>
+		<if test="age != null and age != ''">
+			,age=#{age}
+		</if>
+		<if test="mobile != null and mobile != ''">
+			,mobile=#{mobile}
+		</if>
+		<if test="email != null and email != ''">
+			,email=#{email}
+		</if>
+		<if test="job != null and job != ''">
+			,job=#{job}
+		</if>
+		<if test="education != null and education != ''">
+			,education=#{education}
+		</if>
+		<if test="school != null and school != ''">
+			,school=#{school}
+		</if>
+		<if test="major != null and major != ''">
+			,major=#{major}
+		</if>
+		<if test="experience != null and experience != ''">
+			,experience=#{experience}
+		</if>
+		<if test="createTime != null and createTime != ''">
+			,create_time=#{createTime}
+		</if>
+		<if test="remark != null and remark != ''">
+			,remark=#{remark}
+		</if>
+		where id=#{id}
+	</update>
+
+	<!--添加应聘人员信息-->
+	<insert id="addApplication" parameterType="com.lm.employee.entity.Application">
+		insert into application values (#{id},#{name},#{sex},#{age},#{mobile},#{email},#{job},#{education},
+		#{school},#{major},#{experience},#{createTime},#{remark}
+		)
+	</insert>
+</mapper>

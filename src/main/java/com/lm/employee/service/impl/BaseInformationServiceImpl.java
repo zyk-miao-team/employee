@@ -54,4 +54,14 @@ public class BaseInformationServiceImpl implements BaseInformationService {
             return "updateFaild";
         }
     }
+
+    @Override
+    public String addNewEmployee(Employee employee) {
+        try {
+            employeeMapper.addNewEmployee(employee);
+            return "addSuccess";
+        } catch (Exception e) {
+            return "addFaild";
+        }
+    }
 }

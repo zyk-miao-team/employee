@@ -35,7 +35,6 @@ public interface EmployeeMapper {
 
     /**
      * 查询所有员工基本信息（管理员权限）
-     * @return
      */
     List<Employee> selectAllEmloyee();
 
@@ -58,5 +57,10 @@ public interface EmployeeMapper {
      * 管理员修改某个员工的资料
      */
     void updateEmployee(Employee employee);
+
+    /**
+     * 添加新员工
+     */
+    void addNewEmployee(Employee employee);
 
 }

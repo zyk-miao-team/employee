@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lm.employee.mapper.DepartmentMapper">
+
+	<!--查询个人薪资信息-->
+	<select id="selectDepartment" resultType="com.lm.employee.entity.Department">
+		select * from department
+	</select>
+
+	<!--管理员删除某个部门-->
+	<delete id="deletDepartment"  parameterType="java.lang.String">
+          delete from department where dept_no=#{deptNo}
+    </delete>
+
+	<!--管理员修改某个部门的资料-->
+	<update id="updateDepartment"  parameterType="com.lm.employee.entity.Department">
+		update department set dept_no=#{deptNo}
+		<if test="deptName != null and deptName != ''">
+			,dept_name=#{deptName}
+		</if>
+		<if test="head != null and head != ''">
+			,head=#{head}
+		</if>
+		<if test="describ != null and describ != ''">
+			,describ=#{describ}
+		</if>
+		where dept_no=#{deptNo}
+	</update>
+
+	<!--管理员添加部门-->
+	<insert id="addDepartment" parameterType="com.lm.employee.entity.Department">
+		insert into department values (#{deptNo},#{deptName},#{head},#{describ})
+	</insert>
+</mapper>

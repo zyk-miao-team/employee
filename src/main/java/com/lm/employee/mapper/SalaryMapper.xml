@@ -7,5 +7,54 @@
 		select * from salary  where empl_id=#{emplId}
 	</select>
 
+	<!--查询所有薪资信息-->
+	<select id="selectSalary" resultType="com.lm.employee.entity.Salary">
+		select * from salary
+	</select>
+
+	<!--管理员删除某条薪资信息-->
+	<delete id="deletSalary"  parameterType="java.lang.String">
+          delete from salary where id=#{id}
+    </delete>
+
+	<!--管理员修改某条薪资信息-->
+	<update id="updateSalary"  parameterType="com.lm.employee.entity.Salary">
+		update salary set id=#{id}
+		<if test="emplId != null and emplId != ''">
+			,empl_id=#{emplId}
+		</if>
+		<if test="emplName != null and emplName != ''">
+			,empl_name=#{emplName}
+		</if>
+		<if test="basic != null and basic != ''">
+			,basic=#{basic}
+		</if>
+		<if test="extra != null and extra != ''">
+			,extra=#{extra}
+		</if>
+		<if test="full != null and full != ''">
+			,full=#{full}
+		</if>
+		<if test="fine != null and fine != ''">
+			,fine=#{fine}
+		</if>
+		<if test="scot != null and scot != ''">
+			,scot=#{scot}
+		</if>
+		<if test="total != null and total != ''">
+			,total=#{total}
+		</if>
+		<if test="payTime != null and payTime != ''">
+			,pay_time=#{payTime}
+		</if>
+		where id=#{id}
+	</update>
+
+	<!--添加工资记录-->
+	<insert id="addSalary" parameterType="com.lm.employee.entity.Salary">
+		insert into salary values (#{id},#{emplId},#{emplName},#{basic},#{extra},#{full},#{fine},#{scot},
+		#{total},#{payTime}
+		)
+	</insert>
 
 </mapper>

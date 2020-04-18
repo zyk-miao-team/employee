@@ -22,16 +22,16 @@ public class Attendance {
     private String late;
 
     @ApiModelProperty(value = "早退")
-    private String leave;
+    private String leav;
 
     @ApiModelProperty(value = "旷工")
     private String absenteeism;
 
     @ApiModelProperty(value = "请假")
-    private String askforLeave;
+    private String askLeave;
 
     @ApiModelProperty(value = "考勤时间")
-    private String time;
+    private String tim;
 
 
 }

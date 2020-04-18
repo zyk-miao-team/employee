@@ -19,7 +19,7 @@ public class Department {
     private String head;
 
     @ApiModelProperty(value = "部门简介")
-    private String describe;
+    private String describ;
 
 
 }

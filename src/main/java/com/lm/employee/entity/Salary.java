@@ -38,7 +38,7 @@ public class Salary {
     private String total;
 
     @ApiModelProperty(value = "发放时间")
-    private Date payTime;
+    private String payTime;
 
 
 }

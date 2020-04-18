@@ -1,10 +1,441 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>招聘管理</title>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
-<h1>这是招聘管理页面</h1>
+
+<table class="layui-hide" id="demo" lay-filter="test"></table>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script src="../layui/layui.js"></script>
+<script>
+    layui.use(['layer', 'table', 'element'], function () {
+        var layer = layui.layer //弹层
+            , table = layui.table //表格
+            , element = layui.element //元素操作
+
+        //执行一个 table 实例
+        table.render({
+            elem: '#demo'
+            , height: 660
+            , url: '/selectApplication' //数据接口
+            , title: '招聘表'
+            , page: true //开启分页
+            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            , totalRow: true //开启合计行
+            , cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'id', title: '应聘id', width: 130, sort: true, fixed: 'left'}
+                , {field: 'name', title: '姓名', width: 80}
+                , {field: 'sex', title: '性别', width: 60}
+                , {field: 'age', title: '年龄', width: 130}
+                , {field: 'mobile', title: '手机号', width: 180}
+                , {field: 'email', title: '邮箱', width: 175}
+                , {field: 'job', title: '应聘岗位', width: 150}
+                , {field: 'education', title: '学历', width: 60}
+                , {field: 'school', title: '毕业院校', width: 60}
+                , {field: 'major', title: '专业', width: 200}
+                , {field: 'experience', title: '经历', width: 60}
+                , {field: 'createTime', title: '创建时间', width: 130}
+                , {field: 'remark', title: '备注', width: 150}
+                , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo'}
+            ]]
+        });
+
+        //监听头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch (obj.event) {
+                case 'add':
+                    // layer.msg('添加');
+                    layer.open({
+                        type: 1,
+                        title: '添加',
+                        area: ['50%', '70%'],
+                        content: '<form class="layui-form" id="appli" action="" style="padding: 20px;" lay-filter="editDialogForm" enctype="multipart/form-data">\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">应聘id</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="id" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">姓名</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="name" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">性别</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="sex" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">年龄</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="age" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">手机号</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="mobile" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">邮箱</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="email" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">应聘岗位</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="job" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">学历</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="education" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">毕业院校</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="school" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">专业</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="major" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">经历</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="experience" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">创建时间</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="createTime" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '        <div class="layui-form-item">\n' +
+                            '            <label class="layui-form-label">备注</label>\n' +
+                            '            <div class="layui-input-inline">\n' +
+                            '                <input type="text" id="remark" class="layui-input">\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '    </form>',
+                        btn: ['确定添加', '取消'],
+                        yes: function (index, layero) {
+                            $.ajax({
+                                url: "/addApplication",
+                                method: "post",
+                                data: {
+                                    id: $("#id").val(),
+                                    name: $("#name").val(),
+                                    sex: $("#sex").val(),
+                                    age: $("#age").val(),
+                                    mobile: $("#mobile").val(),
+                                    email: $("#email").val(),
+                                    job: $("#job").val(),
+                                    education: $("#education").val(),
+                                    school: $("#school").val(),
+                                    major: $("#major").val(),
+                                    experience: $("#experience").val(),
+                                    createTime: $("#createTime").val(),
+                                    remark: $("#remark").val()
+                                },
+                                success: function (d) {
+                                    layer.close(index);
+                                    layer.msg("添加成功");
+                                    window.location.reload();
+                                },
+                                error:function (d) {
+                                    layer.msg("请求发生错误");
+                                }
+                            })
+                        },
+                        btn2: function (index, layero) {
+                            layer.close(index);
+                        }
+                    });
+
+                    break;
+                case 'update':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能同时编辑一个');
+                    } else {
+                        layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+                    }
+                    break;
+                case 'delete':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        layer.msg('删除');
+                    }
+                    break;
+            }
+            ;
+        });
+
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event;
+            //获得 lay-event 对应的值
+            if (layEvent === 'detail') {
+                layer.open({
+                    type: 1,
+                    title: '查看',
+                    area: ['50%', '70%']
+                    ,
+                    content: '<form class="layui-form" action="" style="padding: 20px;" lay-filter="editDialogForm" enctype="multipart/form-data">\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">应聘id</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.id + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">姓名</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.name + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">性别</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.sex + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">年龄</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.age + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">手机号</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.mobile + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">邮箱</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.email + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">应聘岗位</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.job + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">学历</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.education + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">毕业院校</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.school + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">专业</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.major + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">经历</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.experience + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">创建时间</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.createTime + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">备注</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" readonly="readonly" class="layui-input" value=' + data.remark + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '    </form>'
+                    ,
+                    btn: '确定'
+                });
+            } else if (layEvent === 'del') {
+                layer.confirm('真的要删除当前员工么？', function (index) {
+                    //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //向服务端发送删除指令
+                    $.ajax({
+                        url: "/deletApplication",
+                        method: "post",
+                        data: {
+                            id: data.id
+                        },
+                        success: function (d) {
+                            console.log(d);
+                            obj.del();
+                            layer.msg('删除成功');
+                        }
+                    });
+                });
+            } else if (layEvent === 'edit') {
+                layer.open({
+                    type: 1,
+                    title: '修改',
+                    area: ['50%', '70%'],
+                    content: '<form class="layui-form" id="application" action="" style="padding: 20px;" lay-filter="editDialogForm" enctype="multipart/form-data">\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">应聘id</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="id" readonly="readonly" class="layui-input" value=' + data.id + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">姓名</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="name" class="layui-input" value=' + data.name + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">性别</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="sex" class="layui-input" value=' + data.sex + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">年龄</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="age" class="layui-input" value=' + data.age + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">手机号</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="mobile" class="layui-input" value=' + data.mobile + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">邮箱</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="email" class="layui-input" value=' + data.email + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">应聘岗位</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="job" class="layui-input" value=' + data.job + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">学历</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="education" class="layui-input" value=' + data.education + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">毕业院校</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="school" class="layui-input" value=' + data.school + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">专业</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="major" class="layui-input" value=' + data.major + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">经历</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="experience" class="layui-input" value=' + data.experience + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">创建时间</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="createTime" class="layui-input" value=' + data.createTime + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="layui-form-item">\n' +
+                        '            <label class="layui-form-label">备注</label>\n' +
+                        '            <div class="layui-input-inline">\n' +
+                        '                <input type="text" id="remark" class="layui-input" value=' + data.remark + '>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '    </form>',
+                    btn: ['确定修改', '取消'],
+                    yes: function (index, layero) {
+                        $.ajax({
+                            url: "/updateApplication",
+                            method: "post",
+                            data: {
+                                id: $("#id").val(),
+                                name: $("#name").val(),
+                                sex: $("#sex").val(),
+                                age: $("#age").val(),
+                                mobile: $("#mobile").val(),
+                                email: $("#email").val(),
+                                job: $("#job").val(),
+                                education: $("#education").val(),
+                                school: $("#school").val(),
+                                major: $("#major").val(),
+                                experience: $("#experience").val(),
+                                createTime: $("#createTime").val(),
+                                remark: $("#remark").val()
+                            },
+                            success: function (d) {
+                                layer.close(index);
+                                layer.msg("修改成功");
+                                window.location.reload();
+                            },
+                            error:function (d) {
+                                layer.msg("请求发生错误");
+                            }
+                        })
+                    },
+                    btn2: function (index, layero) {
+                        layer.close(index);
+                    }
+                });
+
+            }
+        });
+    });
+</script>
 </body>
 </html>

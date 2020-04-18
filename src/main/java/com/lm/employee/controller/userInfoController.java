@@ -54,13 +54,13 @@ public class userInfoController {
 
     @RequestMapping(value = "/updateEmployee",method = RequestMethod.POST)
     public @ResponseBody String updateEmployee(Employee employee){
-//        if("null".equals(employee.getDeptNo())){
-//            employee.setDeptNo(null);
-//        }
-//        if("null".equals(employee.getRemarks())){
-//            employee.setRemarks(null);
-//        }
         String result=baseInformationService.updateEmployee(employee);
+        return result;
+    }
+
+    @RequestMapping(value = "/addNewEmployee",method = RequestMethod.POST)
+    public @ResponseBody String addNewEmployee(Employee employee) {
+        String result=baseInformationService.addNewEmployee(employee);
         return result;
     }
 }

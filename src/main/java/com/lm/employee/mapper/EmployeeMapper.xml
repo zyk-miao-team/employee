@@ -27,16 +27,6 @@
 	<!--查询所有员工基本信息-->
 	<select id="selectAllEmloyee" resultType="com.lm.employee.entity.Employee">
 		select * from employee
-<!--		where 1=1-->
-<!--		<if test="reqEmployeeVo.emplId != null and reqEmployeeVo.emplId != ''">-->
-<!--			and empl_id=#{reqEmployeeVo.emplId}-->
-<!--		</if>-->
-<!--		<if test="reqEmployeeVo.emplName != null and reqEmployeeVo.emplName != ''">-->
-<!--			and empl_name=#{reqEmployeeVo.emplName}-->
-<!--		</if>-->
-<!--		<if test="reqEmployeeVo.deptNo != null and reqEmployeeVo.deptNo != ''">-->
-<!--			and dept_no=#{reqEmployeeVo.deptNo}-->
-<!--		</if>-->
 	</select>
 
 	<!--修改密码-->
@@ -113,4 +103,63 @@
          where empl_id=#{emplId}
     </update>
 
+	<!--添加新员工-->
+	<insert id="addNewEmployee" parameterType="com.lm.employee.entity.Employee">
+		insert into employee values (
+		<if test="emplId != null and emplId != ''">
+			#{emplId},
+		</if>
+		<if test="password != null and password != ''">
+			#{password},
+		</if>
+		<if test="emplName != null and emplName != ''">
+			#{emplName},
+		</if>
+		<if test="sex != null and sex != ''">
+			#{sex},
+		</if>
+		<if test="mobile != null and mobile != ''">
+			#{mobile},
+		</if>
+		<if test="email != null and email != ''">
+			#{email},
+		</if>
+		<if test="idCard != null and idCard != ''">
+			#{idCard},
+		</if>
+		<if test="birthday != null and birthday != ''">
+			#{birthday},
+		</if>
+		<if test="nativePlace != null and nativePlace != ''">
+			#{nativePlace},
+		</if>
+		<if test="nation != null and nation != ''">
+			#{nation},
+		</if>
+		<if test="address != null and address != ''">
+			#{address},
+		</if>
+		<if test="education != null and education != ''">
+			#{education},
+		</if>
+		<if test="school != null and school != ''">
+			#{school},
+		</if>
+		<if test="major != null and major != ''">
+			#{major},
+		</if>
+		<if test="ploityface != null and ploityface != ''">
+			#{ploityface},
+		</if>
+		<if test="deptNo != null and deptNo != ''">
+			#{deptNo},
+		</if>
+		<if test="stationName != null and stationName != ''">
+			#{stationName},
+		</if>
+		<if test="remarks != null and remarks != ''">
+			#{remarks}
+		</if>
+		)
+	</insert>
 </mapper>

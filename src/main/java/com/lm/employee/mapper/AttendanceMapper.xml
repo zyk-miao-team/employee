@@ -7,4 +7,45 @@
 		select * from attendance  where empl_id=#{emplId}
 	</select>
 
+	<!--查询所有考勤信息-->
+	<select id="selectAttendance" resultType="com.lm.employee.entity.Attendance">
+		select * from attendance
+	</select>
+
+	<!--管理员删除某条考勤信息-->
+	<delete id="deletAttendance"  parameterType="java.lang.String">
+          delete from attendance where id=#{id}
+    </delete>
+
+	<!--管理员修改某条考勤信息-->
+	<update id="updateAttendance"  parameterType="com.lm.employee.entity.Attendance">
+		update attendance set id=#{id}
+		<if test="emplId != null and emplId != ''">
+			,empl_id=#{emplId}
+		</if>
+		<if test="emplName != null and emplName != ''">
+			,empl_name=#{emplName}
+		</if>
+		<if test="late != null and late != ''">
+			,late=#{late}
+		</if>
+		<if test="leav != null and leav != ''">
+			,leav=#{leav}
+		</if>
+		<if test="absenteeism != null and absenteeism != ''">
+			,absenteeism=#{absenteeism}
+		</if>
+		<if test="askLeave != null and askLeave != ''">
+			,ask_leave=#{askLeave}
+		</if>
+		<if test="tim != null and tim != ''">
+			,tim=#{tim}
+		</if>
+		where id=#{id}
+	</update>
+
+	<!--添加考勤记录-->
+	<insert id="addAttendance" parameterType="com.lm.employee.entity.Attendance">
+		insert into attendance values (#{id},#{emplId},#{emplName},#{late},#{leav},#{absenteeism},#{askLeave},#{tim})
+	</insert>
 </mapper>

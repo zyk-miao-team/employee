@@ -44,7 +44,7 @@ public class Application {
     private String experience;
 
     @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    private String createTime;
 
     @ApiModelProperty(value = "备注")
     private String remark;

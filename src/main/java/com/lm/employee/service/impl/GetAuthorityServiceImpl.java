@@ -1,6 +1,7 @@
 package com.lm.employee.service.impl;
 
 import com.lm.employee.entity.Auth;
+import com.lm.employee.entity.Role;
 import com.lm.employee.mapper.AuthMapper;
 import com.lm.employee.service.GetAuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,8 @@ public class GetAuthorityServiceImpl implements GetAuthorityService {
         }
         return root;
     }
+
+
 
 
     //递归获取子菜单

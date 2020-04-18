@@ -30,4 +30,8 @@ public interface BaseInformationService {
      */
     String updateEmployee(Employee employee);
 
+    /**
+     * 管理员添加新员工
+     */
+    String addNewEmployee(Employee employee);
 }

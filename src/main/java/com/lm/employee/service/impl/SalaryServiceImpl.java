@@ -18,4 +18,40 @@ public class SalaryServiceImpl implements SalaryService {
         List<Salary> listSalary=salaryMapper.selectOneSalary(emplId);
         return listSalary;
     }
+
+    @Override
+    public List<Salary> selectSalary() {
+        List<Salary> salaryList=salaryMapper.selectSalary();
+        return salaryList;
+    }
+
+    @Override
+    public String deletSalary(String id) {
+        try {
+            salaryMapper.deletSalary(id);
+            return "deleteSuccess";
+        } catch (Exception e) {
+            return "deleteFaild";
+        }
+    }
+
+    @Override
+    public String updateSalary(Salary salary) {
+        try {
+            salaryMapper.updateSalary(salary);
+            return "updateSuccess";
+        } catch (Exception e) {
+            return "updateFaild";
+        }
+    }
+
+    @Override
+    public String addSalary(Salary salary) {
+        try {
+            salaryMapper.addSalary(salary);
+            return "addSuccess";
+        } catch (Exception e) {
+            return "addFaild";
+        }
+    }
 }

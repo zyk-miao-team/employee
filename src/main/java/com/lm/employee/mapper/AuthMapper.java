@@ -1,6 +1,7 @@
 package com.lm.employee.mapper;
 
 import com.lm.employee.entity.Auth;
+import com.lm.employee.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +14,5 @@ public interface AuthMapper {
      * 查询权限
      */
     List<Auth> selectAuth(String emplId);
+
 }

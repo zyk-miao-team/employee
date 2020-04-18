@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lm.employee.mapper.GiveRoleMapper">
+
+
+	<select id="selectRole" resultType="com.lm.employee.entity.GiveRole">
+		select a.empl_id,a.empl_name,c.role_id,c.role_name from employee a
+		inner join role_empl b on a.empl_id=b.empl_id
+		inner join role c on b.role_id=c.role_id
+	</select>
+
+
+	<insert id="addAuth" parameterType="java.lang.String">
+		insert into role_empl (role_id,empl_id) values (#{roleId},#{emplId})
+	</insert>
+
+
+	<update id="updateAuth"  parameterType="java.lang.String">
+		update role_empl set role_id=#{roleId} where empl_id=#{emplId}
+	</update>
+
+
+	<delete id="deletAuth"  parameterType="java.lang.String">
+          delete from role_empl where empl_id=#{emplId}
+    </delete>
+</mapper>
